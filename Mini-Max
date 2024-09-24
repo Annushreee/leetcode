@@ -11,8 +11,8 @@ SOLUTION:
     // Write your code here
     Collections.sort(arr); //we will first sort the array
     
-    int min_sum = 0;
-    int max_sum = 0;
+    long min_sum = 0;
+    long max_sum = 0;
     
     for(int i =0; i < arr.size() - 1;i++){
         min_sum += arr.get(i);
