@@ -1,0 +1,60 @@
+Given an m x n matrix, return all elements of the matrix in spiral order.
+
+Example 1:
+
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [1,2,3,6,9,8,7,4,5]
+
+SOLUTION:
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();  // To store the spiral order
+        
+        if (matrix == null || matrix.length == 0) {
+            return result;  // If the matrix is empty, return an empty list
+        }
+        
+        int startrow = 0;
+        int startcol = 0;
+        int endrow = matrix.length - 1;
+        int endcol = matrix[0].length - 1;
+
+        while (startrow <= endrow && startcol <= endcol) {
+            // Top row
+            for (int j = startcol; j <= endcol; j++) {
+                result.add(matrix[startrow][j]);
+            }
+            
+            // Right column
+            for (int i = startrow + 1; i <= endrow; i++) {
+                result.add(matrix[i][endcol]);
+            }
+            
+            // Bottom row (only if startrow != endrow)
+            for (int j = endcol - 1; j >= startcol; j--) {
+                if (startrow == endrow) {
+                    break;
+                }
+                result.add(matrix[endrow][j]);
+            }
+            
+            // Left column (only if startcol != endcol)
+            for (int i = endrow - 1; i > startrow; i--) {
+                if (startcol == endcol) {
+                    break;
+                }
+                result.add(matrix[i][startcol]);
+            }
+            
+            startcol++;
+            startrow++;
+            endcol--;
+            endrow--;
+        }
+        
+        return result;  // Return the list of integers in spiral order
+    }
+}
