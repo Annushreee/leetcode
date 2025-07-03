@@ -1,0 +1,28 @@
+public class StringGame {
+    public static void main(String[] args) {
+        int k = 10; // example value, change as needed
+        char result = findKthCharacter(k);
+        System.out.println("The " + k + "th character is: " + result);
+    }
+
+    public static char findKthCharacter(int k) {
+        int shift = 0;
+
+        while (k > 1) {
+            // At each step, the length of the string doubles
+            // Determine which half the k-th character lies in
+            if (k % 2 == 0) {
+                // If it's in the second half, it is a shifted character
+                shift++;
+                k = k / 2;
+            } else {
+                // If it's in the first half, no shift is applied
+                k = (k + 1) / 2;
+            }
+        }
+
+        // Starting from 'a', apply the total shift with wrap-around at 'z'
+        char result = (char) ((('a' - 'a' + shift) % 26) + 'a');
+        return result;
+    }
+}
