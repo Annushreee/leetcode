@@ -1,0 +1,28 @@
+class Solution {
+    public int countHillValley(int[] nums) {
+         List<Integer> cleanList = new ArrayList<>();
+        cleanList.add(nums[0]);
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[i - 1]) {
+                cleanList.add(nums[i]);
+            }
+
+        }
+        int[] cleanNums = new int[cleanList.size()];
+        for (int i = 0; i < cleanList.size(); i++) {
+            cleanNums[i] = cleanList.get(i);
+        }
+
+        // Count hills and valleys
+        int count = 0;
+        for (int i = 1; i < cleanNums.length - 1; i++) {
+            if ((cleanNums[i] > cleanNums[i - 1] && cleanNums[i] > cleanNums[i + 1]) || 
+                (cleanNums[i] < cleanNums[i - 1] && cleanNums[i] < cleanNums[i + 1])) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+    }
